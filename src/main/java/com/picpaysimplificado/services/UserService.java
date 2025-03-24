@@ -2,6 +2,7 @@ package com.picpaysimplificado.services;
 
 import java.math.BigDecimal;
 
+import com.picpaysimplificado.domain.user.userType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +15,14 @@ public class UserService {
 	@Autowired
 	private UserRepository repository;
 	
-	public void validateTransaction(User sender, BigDecimal amount) {
-		if(sender.getClass())
+	public void validateTransaction(User sender, BigDecimal amount) throws Exception {
+
+		if(sender.getBalance().compareTo(amount) < 0){
+			throw new Exception("Saldo Insuficiente");
+		}
+		if(sender.getUserType() == userType.MERCHANT){
+			throw new Exception("Lojista Não pode enviar pagamemtos");
+		}
 	}
 
 }

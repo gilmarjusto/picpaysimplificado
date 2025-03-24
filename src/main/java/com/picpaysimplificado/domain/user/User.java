@@ -39,7 +39,7 @@ public class User {
 
 	private String password;
 
-	private BigDecimal amount;
+	private BigDecimal balance;
 
 	@Enumerated(EnumType.STRING)
 	private userType userType;
